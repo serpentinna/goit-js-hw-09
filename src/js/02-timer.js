@@ -10,6 +10,8 @@ const refs = {
 };
 
 const startButton = document.querySelector('button[data-start]');
+const timePickerInput = document.querySelector('input');
+
 startButton.addEventListener('click', onTimerStart);
 startButton.disabled = true;
 
@@ -37,16 +39,18 @@ function checkIfDateValid(chosenDate) {
   }
 
   startButton.disabled = false;
-   validDate = chosenDate;
+  validDate = chosenDate;
+  timePickerInput.disabled = true;
 }
 
 
 function onTimerStart(event) {
-   event.target.disabled = true;
+
+   event.currentTarget.disabled = true;
 
     const intervalId = setInterval(() => {
-    const timeCalculator = validDate.getTime() - Date.now();
-    const timeCountDown = convertMs(timeCalculator)
+      const timeCalculator = validDate.getTime() - Date.now();
+      const timeCountDown = convertMs(timeCalculator)
 
     Object.keys(timeCountDown).forEach(key => (refs[key].textContent = addLeadingZero(timeCountDown[key])));
 

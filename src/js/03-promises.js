@@ -5,14 +5,14 @@ form.addEventListener('submit', onFormSubmit);
 
   
 function onFormSubmit(event) {
-    event.preventDefault;
+    event.preventDefault();
 
     const { elements } = event.currentTarget;
     const amount = Number(elements.amount.value);
     const step = Number(elements.step.value);
     let delay = Number(elements.delay.value);
 
-    for (i = 0; i < amount; i += 1) {
+    for (let i = 0; i < amount; i += 1) {
       createPromise(i + 1, delay)
         .then(({ position, delay }) => {
           Notiflix.Notify.success(`✅ Fulfilled promise ${position} in ${delay}ms`);
@@ -40,3 +40,4 @@ function createPromise(position, delay) {
     }, delay);
   });
 }
+
